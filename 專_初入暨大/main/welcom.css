@@ -1,0 +1,28 @@
+.welcome {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+}
+.welcome div[class^="text"] {
+    text-align: center;
+    width: 50%;
+    height: 50%;
+}
+body .welcome .text1 {
+    margin: 0 0 0 50%;
+}
+div[class^="text"] p {
+    color: gold;
+    font-size: 50px;
+    animation: anime_text 5s linear infinite;
+}
+@keyframes anime_text {
+    50% {
+        color: rgb(0, 89, 255);
+    }
+    100% {
+        color: gold;
+    }
+}

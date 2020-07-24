@@ -1,0 +1,222 @@
+.magic {
+    position: absolute;
+    top: 0;
+    left: 600px;
+    width: calc(100% - 800px) ;
+    height: 100%;
+    background-image: linear-gradient(to right, black, white, black);
+}
+.magic .text00 {
+    position: relative;
+    margin: 50px;
+    width: 600px;
+    height: 600px;
+}
+.magic .text00 div[class^="box"] {
+    transform-style: preserve-3d;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateZ(200px) translate(-50%, 0);
+    width: 210px;
+    height: 210px;
+    /* background-color: blue; */
+    animation: anime1 6s linear infinite;
+}
+@keyframes anime1 {
+    100% {
+        transform: translateZ(200px) translate(-50%, 0) rotateY(360deg);
+    }
+}
+@keyframes anime2 {
+    12% {
+        bottom: 150px;
+    }
+    68% {
+        bottom: 150px;
+    }
+    80% {
+        bottom: 0;
+    }
+}
+body .magic .text00 .box1 {
+    animation: anime1 6s linear infinite, anime2 60s linear infinite;
+}
+body .magic .text00 .box2 {
+    animation: anime1 6s linear infinite, anime3 60s linear infinite;
+}
+body .magic .text00 .box2 .animebox2_0 {
+    transform-style: preserve-3d;
+    animation: anime2_0 60s linear infinite; ;
+}
+body .magic .text00 .box2 .animebox2_0 .animebox2_1 {
+    transform-style: preserve-3d;
+    animation: anime2_1 60s linear infinite;
+}
+body .magic .text00 .box2 .animebox2_0 .animebox2_2 {
+    transform-style: preserve-3d;
+    animation: anime2_2 60s linear infinite;
+}
+@keyframes anime3 {
+    12% {
+        bottom: 350px ; 
+    }
+    68% {
+        bottom: 350px;
+    }
+    80% {
+        bottom: 0;
+    }
+}
+@keyframes anime2_0 {
+    12% {
+        transform: rotateY(-45deg) ;
+    }
+    68% {
+        transform: rotateY(-45deg);
+    }
+    80% {
+        transform: rotateY(0);
+    }
+}
+@keyframes anime2_1 {
+    12% {
+        transform: translateX(-50px);
+    }
+    68% {
+        transform: translateX(-50px);
+    }
+    80% {
+        transform: translateX(0);
+    }
+}
+@keyframes anime2_2 {
+    12% {
+        transform: translateX(50px);
+    }
+    68% {
+        transform: translateX(50px);
+    }
+    80% {
+        transform: translateX(0);
+    }
+}
+.magic .text00 div[class^="move"] {
+    transform-style: preserve-3d;
+    width: 100%;
+    height: 100%;
+    /* background-color: green; */
+    transform: rotateX(45deg) rotate(45deg);
+}
+.magic .text00 div[class^="small"] {
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    /* background-color: orange; */
+}
+.magic .text00 div[class^="move"] div[class*="0_00"] {
+    transform: translateZ(-70px);
+}
+.magic .text00 div[class^="move"] div[class*="0_02"] {
+    transform: translateZ(70px);
+}
+.magic .text00 div[class^="move"] div[class*="0_10"] {
+    transform: translateY(100%) translateZ(-70px);
+}
+.magic .text00 div[class^="move"] div[class*="0_11"] {
+    transform: translateY(100%);
+}
+.magic .text00 div[class^="move"] div[class*="0_12"] {
+    transform: translateY(100%) translateZ(70px);
+}
+.magic .text00 div[class^="move"] div[class*="0_20"] {
+    transform: translateY(200%) translateZ(-70px);
+}
+.magic .text00 div[class^="move"] div[class*="0_21"] {
+    transform: translateY(200%) ;
+}
+.magic .text00 div[class^="move"] div[class*="0_22"] {
+    transform: translateY(200%) translateZ(70px);
+}
+.magic .text00 div[class^="move"] div[class*="1_00"] {
+    transform: translateX(100%) translateZ(-70px);
+}
+.magic .text00 div[class^="move"] div[class*="1_01"] {
+    transform: translateX(100%);
+}
+.magic .text00 div[class^="move"] div[class*="1_02"] {
+    transform: translateX(100%) translateZ(70px);
+}
+.magic .text00 div[class^="move"] div[class*="1_10"] {
+    transform: translateX(100%) translateY(100%) translateZ(-70px);
+}
+.magic .text00 div[class^="move"] div[class*="1_11"] {
+    transform: translateX(100%) translateY(100%);
+}
+.magic .text00 div[class^="move"] div[class*="1_12"] {
+    transform: translateX(100%) translateY(100%) translateZ(70px);
+}
+.magic .text00 div[class^="move"] div[class*="1_20"] {
+    transform: translateX(100%) translateY(200%) translateZ(-70px);
+}
+.magic .text00 div[class^="move"] div[class*="1_21"] {
+    transform: translateX(100%) translateY(200%);
+}
+.magic .text00 div[class^="move"] div[class*="1_22"] {
+    transform: translateX(100%) translateY(200%) translateZ(70px);
+}
+.magic .text00 div[class^="move"] div[class*="2_00"] {
+    transform: translateX(200%) translateZ(-70px);
+}
+.magic .text00 div[class^="move"] div[class*="2_01"] {
+    transform: translateX(200%);
+}
+.magic .text00 div[class^="move"] div[class*="2_02"] {
+    transform: translateX(200%) translateZ(70px);
+}
+.magic .text00 div[class^="move"] div[class*="2_10"] {
+    transform: translateX(200%) translateY(100%) translateZ(-70px);
+}
+.magic .text00 div[class^="move"] div[class*="2_11"] {
+    transform: translateX(200%) translateY(100%);
+}
+.magic .text00 div[class^="move"] div[class*="2_12"] {
+    transform: translateX(200%) translateY(100%) translateZ(70px);
+}
+.magic .text00 div[class^="move"] div[class*="2_20"] {
+    transform: translateX(200%) translateY(200%) translateZ(-70px);
+}
+.magic .text00 div[class^="move"] div[class*="2_21"] {
+    transform: translateX(200%) translateY(200%);
+}
+.magic .text00 div[class^="move"] div[class*="2_22"] {
+    transform: translateX(200%) translateY(200%) translateZ(70px);
+}
+div[class^="smallbox"] div[class^="page"] {
+    width: 100%;
+    height: 100%;
+    /* background-image: linear-gradient(to top left, rgba(255, 0, 0, 0.3), rgba(255, 166, 0, 0.3), rgba(255, 255, 0, 0.3), rgba(0, 128, 0, 0.3), rgba(0, 0, 255, 0.3), rgba(128, 0, 128, 0.3)) ; */
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 30px rgba(3, 3, 3, 0.7);
+}
+.page1 {
+    transform: translateY(-50%) rotateX(90deg);
+}
+.page2 {
+    transform: translateY(-50%) rotateX(90deg);
+}
+.page3 {
+    transform: translateY(-200%) translateZ(35px);
+}
+.page4 {
+    transform: translateY(-300%) translateZ(-35px);
+}
+.page5 {
+    transform: translate(50%, -400%) rotateY(90deg);
+}
+.page6 {
+    transform: translate(-50%, -500%) rotateY(90deg);
+}

@@ -1,0 +1,107 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.head {
+    position: relative;
+    overflow: hidden;
+    height: 600px;
+    margin: 0 auto;
+}
+.clock {
+    transform-style: preserve-3d;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: 600px;
+    background-color: black;
+}
+.clock div[class^="clock"] {
+    transform-style: preserve-3d;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+.clock00 {
+    width: 35%;
+    height: 35%; 
+}
+.clock00 video {
+    width: 850px;
+    height: 850px;
+    transform: translate(-37%, -36%);
+}
+.clock img {
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.clock01 {
+    width: 60%;
+    height: 60%;
+}
+.clock02 {
+    width: 70%;
+    height: 70%;
+    animation: clock02 40s linear infinite;
+}
+.clock03 {
+    width: 80%;
+    height: 80%;
+    animation: clock03 80s linear infinite;
+}
+.clock04 {
+    width: 100%;
+    height: 100%;
+    animation: clock02 120s linear infinite;
+}
+@keyframes clock03 {
+    100% {
+        transform: translate(-50%, -50%) rotateZ(-360deg);
+    }
+}
+@keyframes clock02 {
+    100% {
+        transform: translate(-50%, -50%) rotateZ(360deg);
+    }
+
+}
+.clock div[class^="clock_"] {
+    width: 50px;
+    height: 320px;
+    border-radius: 0;
+}
+div[class^="clock_"] div {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 160px;
+    background-color: black;
+}
+.clock .clock_hour .hour {
+    transform: translateY(30px);
+}
+.clock_sec .sec {
+    width: 3px;
+}
+.clock_sec .obj00 {
+    width: 10px;
+    height: 4px;
+    transform: translate(-50%, -120px);
+    background-color: black;
+}
+.clock_sec .circle {
+    float: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: translate(-50%, 50%);
+    background-color: black;
+}

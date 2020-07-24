@@ -1,5 +1,5 @@
 .magic {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 600px;
     width: calc(100% - 800px) ;

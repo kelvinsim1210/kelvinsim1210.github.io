@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: 600px;
-    width: calc(100% - 800px) ;
+    width: calc(100% - 750px) ;
     height: 100%;
     background-image: linear-gradient(to right, black, white, black);
 }

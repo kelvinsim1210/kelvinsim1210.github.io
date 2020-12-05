@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <meta http-equiv="refresh" content="3"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> css </title>
+
+  <style>
+    * {
+      padding: 0 ;
+      margin: 0 ;
+    }
+    p {
+      margin-bottom: 10px ;
+    }
+    div {
+      display: inline-block ;
+      margin: 10px ;
+    }
+    .text00 {
+      width: 0 ;    /* 如果不給盒子設置大小，直接設置邊框，盒子大小為0，看過去就是這樣 */
+      height: 0 ;
+      border-top: 50px solid black ;
+      border-right: 50px solid red ;
+      border-bottom: 50px solid blue ;
+      border-left: 50px solid green ;
+    }
+    .text01 {
+      width: 0 ;
+      height: 0 ;
+      border: 50px solid transparent ;    /* 先造4個透明邊 */
+      border-top-color: #000;    /* 隨便給一個邊顏色就變三角形了 */
+    }
+    .text02 {
+      position: relative ;
+      width: 100px ;
+      height: 100px ;
+      background-color: black ;
+    }
+    .text03 {
+      position: absolute ;
+      right: -10px ;
+      top: -20px ;
+      width: 0 ;
+      height: 0 ;
+      border: 5px solid transparent ;
+      border-bottom-color: black ;
+      border-right-color: black;
+    }
+    input,
+    textarea {
+      outline: none ;    /* 取消輸入表單得到外框 */
+    }
+    textarea {
+      resize: none ;    /* 取消掉那個可拖動標誌 */
+    }
+    img {
+      vertical-align: middle ;    /* 與文字的對齊方式 */
+      /* 默認是baseline基線，bottom底線，top頂線，middle垂直居中 */
+    }
+    .text04 {    /* 如果圖片是基線對齊，那麼外框不會緊貼圖片，會有空隙 */
+      display: block ;
+      border: 2px solid red ;
+    }
+    .text05 {
+      width: 100px ;
+      height: 100px ;
+      background-color: orange ;
+      white-space: nowrap ;    /* normal是文字顯示不開自動換行，nowrap是強制一行顯示 */
+      overflow: hidden ;    /* 溢出部分隱藏起來，可是就不美美了 */
+      text-overflow: ellipsis ;    /* 溢出變成省略號，前面一定要強制一行顯示然後隱藏 */
+    }
+    .text06 li {    /* 讓盒子邊框重疊 */
+      float: left ;
+      list-style: none ;
+      width: 100px ;
+      height: 100px ;
+      border: 1px solid red ;
+      margin-left: -1px ;
+    }
+    .text06 li:hover {    /* 解決盒子外寬重疊後觸發會造成的影響 */
+    /*  position: relative ;    /* 用添加定位來提高盒子的高度 */  
+      z-index: 1 ;    /* 如果盒子都已經有定位了，就直接提高z軸 */
+      border: 1px solid blue ;
+    }
+    video {
+      width: 100% ;
+    }
+    input[value] {    /* 針對於包含value的input */
+      color: blue ;
+    }
+    input[type="num"] {    /* 針對於包含了type而且type為num的input，num可以不用加“”，個人習慣 */
+      color: red ;
+    }
+    div[class^="icon"] {    /* 針對於包含class而且class的開頭為icon的div */
+      display: block ;
+      color: blue ;
+    }
+    section[class$="data"] {    /* 針對於包含class而且結尾是data的section */
+      color: red ;
+    }
+    div[class*="4"] {    /* 針對於包含class然後class包含“4”的div */
+      color: green ;
+    }
+    .text07 li:first-child {    /* 選出第一個 */
+      color: red ;
+    }
+    .text07 li:last-child {    /* 選出第一個 */
+      color: blue ;
+    }
+    .text07 li:nth-child(3) {    /* 選出第x個 */
+      color: green ;
+    }
+    .text07 li:nth-child(even) {    /* 選出偶數，odd是單數 */
+      background-color: gray ;
+    }
+    ol li:nth-child(2n) {    /* 套用公式，字母只能是n，n會從0開始加1 */
+        background-color: gray ;
+        /* 4個基礎
+           2n偶數，2n+1奇數，n+3第三個到結束，-n+3第三個到第一個 */
+    }
+    section div:nth-of-type(1) {    /* 優先看屬性才看第幾個，如果是用nth-child是先看第幾個然後才看是不是指定的元素 */
+      background-color: gray ;
+    }
+    .text08::before {    /* 在元素前添加東西 */
+      content: "text01" ;
+    }
+    .text08::after {
+      content: "text02" ;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <p> 精靈圖，把大量需要用到的小圖片放到一張圖片上，減少服務器請求圖片的次數 </p>
+  <p> background-position，用xy軸移動背景圖片 </p>
+  <p> 字體圖標，和文字差不多結構簡單的圖標，可以套用字體顏色，大小之類的
+      http://icomoon.io
+      http://www.iconfont.cn/  編碼簡單些 </p>
+
+  <div class="text00">  </div>    <!-- 21 -->
+  <div class="text01">  </div>    <!-- 29 -->
+  <div class="text02">    <!-- 35 -->
+    <div class="text03">  </div>    <!-- 41 -->
+  </div>
+
+  <ul>
+    <li style="cursor: default ;"> 普通的鼠標 </li>    <!-- cursor就是設置鼠標的模式 -->
+    <li style="cursor: pointer ;"> 小手形狀 </li>
+    <li style="cursor: move ;"> 移動的十字架 </li>
+    <li style="cursor: text ;"> 文本那個I </li>
+    <li style="cursor: not-allowed ;"> 不可，禁止 </li>
+  </ul>
+
+  <input type="text">    <!-- 51 -->
+  <textarea name="" id="" cols="30" rows="10"></textarea>    <!-- 52,55 -->
+
+  <img src="小圖片/img000.png" alt=""> 圖片與文字對齊方式    <!-- 58 -->
+
+  <div class="text04">
+    <img src="小圖片/img000.png" alt=""> 外框影響    <!-- 62 -->
+  </div>
+
+  <div class="text05"> 很多很多很多很多很多很多很多的文字 </div>    <!-- 66 -->
+
+  <ul class="text06">    <!-- 74 -->
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+
+  <p> 合理利用盒子浮動不會壓住文字的效果來實現文字圍繞盒子來顯示 </p>
+
+  <video src="x.mp4" autoplay="autoplay" muted="muted" controls="controls" loop="loop">  </video>
+  <!-- muted靜音，設置了google才會自動播放，controls添加控制按鈕，loop循環 , 87 -->
+  <audio src="..\\Secret-坂部剛.mp3" autoplay="autoplay" controls="controls" loop="loop">  </audio>
+
+  <form action="">
+    <ul>
+      <li> 郵箱： <input type="email" required="required">  </li>    <!-- 必填 -->
+      <li> 網址： <input type="url" placeholder="xx.com">  </li>    <!-- 提示文字 -->
+      <li> 日期： <input type="date">  </li>
+      <li> 時間： <input type="time">  </li>
+      <li> 數字： <input type="number" autofocus="autofocus" autocomplete="on">  </li>    <!-- 進入鼠標定位，搜索記錄 -->
+      <li> 電話： <input type="tel">  </li>
+      <li> 搜索： <input type="seqrch">  </li>
+      <li> 顏色： <input type="color">  </li>
+      <li> 提交： <input type="submit">  </li>
+    </ul>
+  </form>
+
+  <input type="text" value="輸入balabala">    <!-- 90 -->
+  <input type="text">
+  <input type="num">    <!-- 93 -->
+
+  <div class="icon1"> 小圖標1 </div>    <!-- 96 -->
+  <div class="icon2"> 小圖標2 </div>
+  <div class="icon3"> 小圖標3 </div>
+  <div class="4icon"> 小圖標4 </div>    <!-- 103 -->
+  <section class="icon1-data"> text00 </section>    <!-- 100 -->
+  <section class="icon2-data"> text01 </section>
+  <section class="icon3-icon"> text03 </section> <br>
+
+  <ul class="text07">
+    <li> 第1個 </li>    <!-- 106 -->
+    <li> 第2個 </li>
+    <li> 第3個 </li>    <!-- 112 -->
+    <li> 第4個 </li>
+    <li> 第5個 </li>    <!-- 109 -->
+  </ul> <br>
+
+  <ol>
+    <li> 第1個 </li>    <!-- 118 -->
+    <li> 第2個 </li>
+    <li> 第3個 </li>
+    <li> 第4個 </li>
+    <li> 第5個 </li>
+  </ol>
+
+  <section>
+    <p> text00 </p>
+    <div> text01 </div>
+    <div> text02 </div>
+  </section>
+
+  <div class="text08"> text00 </div>
+
+
+</body>
+</html>

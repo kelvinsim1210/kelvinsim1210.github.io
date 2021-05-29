@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 装备界面 </title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        #main {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 800px;
+            height: 450px;
+            transform: translate(-50%, -50%);
+            background-color: black;
+        }
+        #Catch {
+            position: absolute;
+            right: 0;
+            width: 90%;
+            height: 80%;
+            background-color: blue;
+        }
+        table[class^="Catch_"], .C_H {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            width: 600px;
+            height: 200px;
+            /* border: 1px solid #000; */
+        }
+        .Catch_tb2, .Catch_tb3 {
+            display: none;
+        }
+        .C_H {
+            /* display: none; */
+            top: 0;
+            height: 50px;
+        }
+        #Change {
+            position: absolute;
+            width: 15%;
+            height: 80%;
+            /* background-color: green; */
+        }
+        .Change02 {
+            top: 20%;
+        }
+        .Change03 {
+            top: 40%;
+        }
+        div[class^="Change"] {
+            position: absolute;
+            width: 100%;
+            height: 15%;
+            background-color: yellow;
+            font-size: 30px;
+            text-align: center;
+        }
+        #See {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 20%;
+            background-color: red;
+        }
+        div[class^="See"] {
+            position: absolute;
+            left: 10%;
+            top: 5px;
+            width: 80px;
+            height: 80px;
+            background-color: blue;
+            /* border-radius: 50%; */
+        }
+        #Start {
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(to bottom right, blue, rgb(0, 195, 255));
+            border-radius: 50%;
+            box-shadow: 1px 1px 10px;
+            overflow: hidden;
+        }
+        #Start img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background-size: unset;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="main">
+        <div id="Catch">
+            <table class="C_H">
+                <tr id="C_H_tr1">
+                    <th onclick="CH(1)"> 武器 </th>
+                    <th onclick="CH(2)"> 头部 </th>
+                    <th onclick="CH(3)"> 胸部 </th>
+                    <th onclick="CH(4)"> 手部 </th>
+                    <th onclick="CH(5)"> 腿部 </th>
+                </tr>
+            </table>
+            <table class="Catch_tb1">
+                <tr id="Catch_tb_tr1">
+                    <td onclick="SelectCatch(this)"></td>
+                    <td onclick="SelectCatch(this)"></td>
+                    <td onclick="SelectCatch(this)"></td>
+                    <td onclick="SelectCatch(this)"></td>
+                    <td onclick="SelectCatch(this)"></td>
+                    <td onclick="SelectCatch(this)"></td>
+                </tr>
+                <tr></tr>
+            </table>
+            <table class="Catch_tb2">
+                <tr id="Catch_tb2_tr1">
+                    <td onclick="SelectCatch2(this)"></td>
+                    <td onclick="SelectCatch2(this)"></td>
+                    <td onclick="SelectCatch2(this)"></td>
+                    <td onclick="SelectCatch2(this)"></td>
+                    <td onclick="SelectCatch2(this)"></td>
+                    <td onclick="SelectCatch2(this)"></td>
+                </tr>
+                <tr id="Catch_tb2_tr2">
+                    <td onclick="SelectCatch2(this)"></td>
+                    <td onclick="SelectCatch2(this)"></td>
+                    <td onclick="SelectCatch2(this)"></td>
+                    <td onclick="SelectCatch2(this)"></td>
+                    <td onclick="SelectCatch2(this)"></td>
+                    <td onclick="SelectCatch2(this)"></td>
+                </tr>
+            </table>
+            <table class="Catch_tb3">
+                <tr id="Catch_tb3_tr1">
+                    <td onclick="SelectCatch3(this)"></td>
+                    <td onclick="SelectCatch3(this)"></td>
+                    <td onclick="SelectCatch3(this)"></td>
+                    <td onclick="SelectCatch3(this)"></td>
+                    <td onclick="SelectCatch3(this)"></td>
+                    <td onclick="SelectCatch3(this)"></td>
+                </tr>
+                <tr></tr>
+            </table>
+        </div>
+        <dic id="Change">
+            <div class="Change01" onclick="NowChange(1)"> 装备 </div>
+            <div class="Change02" onclick="NowChange(2)"> 技能 </div>
+            <div class="Change03" onclick="NowChange(3)"> 药水 </div>
+        </dic>
+        <div id="See">
+            <div class="See01"></div>
+            <div class="See02"></div>
+            <div class="See03"></div>
+            <div class="See04"></div>
+            <div class="See05"></div>
+            <div id="Start">
+                <img src="./img/开始战斗按钮.png" alt="">
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        window.onload = function() {
+            for (var x=2; x<6; x++) {
+                document.getElementsByClassName("See0"+x)[0].style.transform = `translate(${100*(x-1)}px, 0)`;
+            }
+
+            var Now = 1;  // 1.装备， 2.技能， 3.药水
+            NowChange(Now);  // 默认选择装备
+            CH(1);  // 默认选择武器
+        }
+
+        function NowChange(Now) {  // 切换大选项
+            WhenChange(Now);
+            for (var x=1; x<4; x++) {
+                var Change = document.getElementsByClassName("Change0"+x)[0].style;
+                if (x==Now) {
+                    Change.backgroundColor = "orange";
+                }
+                else {
+                    Change.backgroundColor = "yellow";
+                }
+            }
+        }
+
+        var Catch2_num = ["", "", ""];
+        var Catch3_num = ["", "", "", "", ""];
+        function WhenChange(Now) {  // 每次切换选项
+            Catch2_num = ["", "", ""];
+            Catch3_num = ["", "", "", "", ""];
+            Clr_See(Now);
+            var C_H = document.getElementsByClassName("C_H")[0].style;
+            for (var x=1; x<=5; x++) {
+                var See = document.getElementsByClassName("See0"+x)[0].style;
+                See.backgroundColor = "blue";
+                if (Now==1) {
+                    C_H.display = "table";
+                    See.display = "block";
+                    CH(1);
+                }
+                if (Now==2 && x>3) {
+                    C_H.display = "none";
+                    See.display = "none";
+                    Catch2();
+                }
+                if (Now==3) {
+                    C_H.display = "none";
+                    See.display = "block";
+                    Catch3();
+                }
+            }
+        } 
+
+        function Clr_See(Now) {  // 清空选择框，显示区
+            for (var x=1; x<6; x++) {
+                document.getElementsByClassName("See0"+x)[0].style.backgroundImage = "";
+            }
+
+            for (var x=1; x<=3; x++) {
+                var change = document.getElementsByClassName("Catch_tb"+x)[0].style;
+                if (Now==x) {
+                    change.display = "table";
+                }
+                else {
+                    change.display = "none";
+                }
+            }
+        }
+
+
+        // 装备相关
+        function CH(Now) {  // 切换装备种类
+            Catch(Now);
+            for (var x=0; x<5; x++) {
+                var Change = document.getElementById("C_H_tr1").children[x].style;
+                if (x==Now-1) {
+                    Change.backgroundColor = "orange";
+                }
+                else {
+                    Change.backgroundColor = "yellow";
+                }
+            }
+        }
+
+        function Catch(Now) {  // 导入装备图片
+            var text = ["T1_0", "T2_0", "T3_0", "T4_0", "T5_0"],
+                text_num = [2, 3, 3, 0, 3];
+            for (var x=1; x<=6; x++) {
+                var td = document.getElementById("Catch_tb_tr1").children[x-1];
+                if (x <= text_num[Now-1]) {
+                    td.style.backgroundImage = `url(./img/${text[Now-1]+x}.Png)`;
+                    td.style.backgroundSize = "contain";
+                    td.style.backgroundRepeat = "no-repeat";
+                    td.style.backgroundColor = "gray";
+                }
+                else {
+                    td.style.backgroundImage = "";
+                    td.style.backgroundColor = "transparent";
+                }
+            }
+        }
+
+        function SelectCatch(Now) {  // 选择装备
+            // console.log("ok");
+            var x = Now.style.backgroundImage;
+            var a = x.replace("\"", "");
+            // console.log(a.replace("\"", ""));
+            var See = document.getElementsByClassName("See0"+x.charAt(12))[0].style;
+            See.backgroundImage = a.replace("\"", "");
+            See.backgroundSize = "contain";
+            See.backgroundRepeat = "no-repeat";
+        }
+
+
+        // 技能相关
+        function Catch2() {  // 导入技能图片
+            var QWER = 7;  // 有几个技能
+            for (var x=1; x<=QWER; x++) {
+                var tr = 1;
+                if (x>6) {
+                    tr = 2;
+                }
+                var td = document.getElementById("Catch_tb2_tr"+tr).children[(x-1)%6].style;
+                // console.log(`url(./img./QWER_${x}.Png)`);
+                td.backgroundImage = `url(./img/QWER_${x}.Png)`;
+                td.backgroundSize = "contain";
+                td.backgroundRepeat = "no-repeat";
+            }
+        }
+
+        // var Catch2_num = ["", "", ""];
+        function SelectCatch2(Now) {  // 选择技能
+            var x = Now.style.backgroundImage;
+            var a = x.replace("\"", "");
+            var b = a.replace("\"", "");
+            for (var x=0; x<Catch2_num.length; x++) {
+                if (Catch2_num[x] == "") {
+                    Catch2_num[x] = b;
+                    console.log(b);
+                    var See = document.getElementsByClassName("See0"+(x+1))[0].style;
+                    See.backgroundImage = b;
+                    See.backgroundSize = "contain";
+                    See.backgroundRepeat = "no-repeat";
+                    break;
+                }
+            }
+        }
+    
+
+        // 药水相关
+        function Catch3() {
+            var ZXC = 3;
+            for (var x=1; x<=ZXC; x++) {
+                var td = document.getElementById("Catch_tb3_tr1").children[x-1].style;
+                // console.log(`url(./img./QWER_${x}.Png)`);
+                td.backgroundImage = `url(./img/ZXC_${x}.Png)`;
+                td.backgroundSize = "contain";
+                td.backgroundRepeat = "no-repeat";
+                td.backgroundColor = "gray";
+            }
+        }
+
+        function SelectCatch3(Now) {
+            var x = Now.style.backgroundImage;
+            var a = x.replace("\"", "");
+            var b = a.replace("\"", "");
+            // console.log(b);
+            for (var x=0; x<Catch3_num.length; x++) {
+                if (Catch3_num[x] == "") {
+                    Catch3_num[x] = b;
+                    console.log(Catch3_num);
+                    var See = document.getElementsByClassName("See0"+(x+1))[0].style;
+                    See.backgroundImage = b;
+                    See.backgroundSize = "contain";
+                    See.backgroundRepeat = "no-repeat";
+                    break;
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>

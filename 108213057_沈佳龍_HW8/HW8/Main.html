@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页面</title>
+
+    <style>
+        * {  /* 消除所有间距喵 */
+            padding: 0;
+            margin: 0;
+        }
+        html, body {  /* 设置满屏喵 */
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            background: linear-gradient(to bottom, black, black, rgb(37, 17, 0));
+        }
+        #Sign1 {  /* 小图标喵 */
+            position: absolute;
+            top: 20%;
+            zoom: 2;
+            opacity: 0.5;
+        }
+        #BackGround1 {  /* 设置背景喵 */
+            position: fixed;
+            right: 0;
+            height: 100%;
+        }
+        #BackGround1 img {  /* 看板娘喵 */
+            height: 100%;
+        }
+        #WordBox {  /* 喵喵说话的地方喵 */
+            display: none;
+            padding: 10px;
+            position: absolute;
+            top: 50%;
+            right: 30%;
+            width: 300px;
+            height: 100px;
+            color: white;
+            font-size: 20px;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 10px;
+        }
+        #BackGround2 {  /* 月亮喵 */
+            width: 100px;
+            height: 100px;
+            background-color: rgb(255, 255, 0);
+            border-radius: 50%;
+            box-shadow: 0px 0px 50px 20px rgb(243, 243, 130);
+        }
+        #Login_Box {  /* 设置登录框喵 */
+            position: absolute;
+            top: 50%;
+            transform: translate(50px, -50%);  /* 调整位置喵 */
+            width: 600px;
+            height: 300px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+        #Login_Form, #Login_Table {  /* 设置登录框内容喵 */
+            width: 100%;
+            height: 100%;
+            font-size: 30px;
+            color: white;
+        }
+        #Login_Table {  /* 留一点高度空间喵 */
+            width: 100%;
+            height: 60%;
+        }
+        input {  /* 针对所有input进行设置喵 */
+            width: 60%;
+            height: 30px;
+            font-size: 20px;
+        }
+        .Login_Input {  /* 设置输入框喵 */
+            width: 30%;
+        }
+        #Login_Button {  /* 设置提交按钮喵 */
+            position: absolute;
+            left: 50%;
+            bottom: 10%;
+            transform: translateX(-50%);
+            width: 20%;
+            background: linear-gradient(to bottom, white, gray);
+            border: 2px solid gray;
+        }
+    </style>
+
+</head>
+<body>
+    <img src="./img/Login/Sign1.png" alt="" id="Sign1">  <!-- 标志喵 -->
+    <div id="BackGround1">  <!-- 看板娘喵 -->
+        <div id="WordBox"></div>  <!-- 对话方块喵 -->
+        <img src="./img/Login/Login_1.png" alt="不要盯着妾身" onclick="Talk()">  <!-- 看板娘喵 -->
+    </div>
+    <div id="BackGround2"></div>  <!-- 月亮喵 -->
+    <div id="Login_Box">  <!-- 登录框喵 -->
+        <form id="Login_Form" action="Login.php" method="POST">  <!-- 登录用表单喵 -->
+            <table id="Login_Table">  <!-- 方便内容排列 -->
+                <tr>
+                    <td class="Login_Input">UserName:</td>
+                    <td><input type="text" name="UserName"></td>  <!-- 输入用户名喵 -->
+                </tr>
+                <tr>
+                    <td class="Login_Input">Password:</td>
+                    <td><input type="password" name="Password"></td>  <!-- 输入密码喵 -->
+                </tr>
+            </table>
+            <input id="Login_Button" type="submit" value="登录">  <!-- 登录的按钮喵 -->
+        </form>
+    </div>
+    
+
+    <!-- js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <!-- 导入ajax喵 -->
+    <script>
+        function Talk() {  // 喵喵想和你说话喵
+            var Talk = document.getElementById("BackGround1").children[0];
+            Talk.innerHTML = "别乱碰妾身喵！";
+            Talk.style.display = "block";
+            setTimeout(function() {
+                Talk.style.display = "none";
+            }, 3000);
+        }
+        $('form').on('submit', function(){
+            $.ajax({
+                url: 'Login.php',  //要傳送的頁面喵
+                method: 'POST',  //使用 POST 方法傳送請求喵
+                dataType: 'json',  //回傳資料會是 json 格式
+                data: $('form').serialize(),  //將表單資料用打包起來送出去喵
+                success: function(res){
+                    if (res.success == true) {  // 登录成功喵
+                        window.location.href = "Shop.php";
+                    }
+                    else {
+                        var Word = document.getElementById("WordBox");  // 喵喵会告诉你为什么登录失败喵
+                        Word.innerHTML = res.success;
+                        Word.style.display = "block";
+                        setTimeout(function() {  // 一段时间就消失喵
+                            Word.style.display = "none";
+                        }, 3000);
+                    }
+                },
+            });
+            return false;  // 阻止瀏覽器跳轉喵，因為已經用 ajax 送出去了喵
+        });
+    </script>
+</body>
+</html>

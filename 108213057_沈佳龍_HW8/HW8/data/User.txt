@@ -1,0 +1,4 @@
+john, pwd1234, VIP
+mary, pw!51Df, Gold
+fred, qwUx7d4, Guest
+xxx, 123, Guest
